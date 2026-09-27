@@ -55,14 +55,15 @@
   <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Увеличенная фотография">
     <div class="stage" id="stage"><img id="zoomImage" alt=""></div><div class="viewer-label" id="viewerLabel"></div><button class="close" id="closeViewer" aria-label="Закрыть">×</button><div class="hint" id="hint">Разведите два пальца для увеличения</div>
   </div>
-  <script src="catalog.js"></script>
+  <script src="catalog.js?v=20260928-2"></script>
   <script>
   (()=>{
     const data=window.VASKEVICH_CATALOG.products;
     const grid=document.getElementById('grid'),count=document.getElementById('count'),empty=document.getElementById('empty'),reset=document.getElementById('reset');
     let type='all',natural=false;
-    const thumb=id=>`t${id}.webp`;
-    const full=(id,view)=>`f${id}_${view}.webp`;
+    const assetVersion='20260928-2';
+    const thumb=id=>`t${id}.webp?v=${assetVersion}`;
+    const full=(id,view)=>`f${id}_${view}.webp?v=${assetVersion}`;
     grid.innerHTML=data.map(p=>`<button class="card" data-id="${p.id}" data-tags="${p.tags.join(' ')}" aria-label="Открыть модель ${p.id}"><span class="photo"><img src="${thumb(p.id)}" loading="lazy" decoding="async" alt="Свадебная шубка ${p.id}, вид спереди"></span><span class="number"><span>МОДЕЛЬ ${p.id}</span><span class="arrow">↗</span></span></button>`).join('');
     document.querySelectorAll('.card img').forEach(img=>img.addEventListener('error',()=>{const id=img.closest('.card').dataset.id;const fallbacks=[full(id,'front'),full(id,'three-quarter')];const next=Number(img.dataset.fallback||0);if(next<fallbacks.length){img.dataset.fallback=String(next+1);img.src=fallbacks[next]}else{img.closest('.photo').textContent='Фото временно недоступно'}}));
     function apply(){let shown=0;document.querySelectorAll('.card').forEach(card=>{const tags=card.dataset.tags.split(' ');const okType=type==='all'||tags.includes(type);const okNatural=!natural||tags.includes('natural');const show=okType&&okNatural;card.hidden=!show;if(show)shown++});count.textContent=`Показано: ${shown} из ${data.length}`;empty.style.display=shown?'none':'block';reset.hidden=type==='all'&&!natural}
