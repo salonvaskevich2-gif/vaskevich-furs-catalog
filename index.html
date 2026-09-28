@@ -36,14 +36,19 @@
   <main class="catalog" id="catalog">
     <div class="toolbar" aria-label="Фильтры каталога">
       <div class="toolbar-row" id="typeFilters">
-        <button class="filter active" data-type="all">Все модели</button>
-        <button class="filter" data-type="jackets">Кофточки</button>
-        <button class="filter" data-type="sleeveless">Без рукавов</button>
-        <button class="filter" data-type="puffers">Пуховички</button>
-        <button class="filter" data-type="scarves">Шарфики / пончо</button>
+        <button class="filter active" id="allFilter">Все модели</button>
+        <button class="filter" data-filter="jackets">Кофточки</button>
+        <button class="filter" data-filter="sleeveless">Без рукавов</button>
+        <button class="filter" data-filter="puffers">Пуховички</button>
+        <button class="filter" data-filter="scarves">Шарфики / пончо</button>
+        <button class="filter" data-filter="coats">Пальто</button>
+        <button class="filter" data-filter="blazers">Пиджаки</button>
+        <button class="filter" data-filter="bolero">Болеро</button>
       </div>
       <div class="toolbar-row">
-        <button class="filter material" id="naturalFilter" aria-pressed="false">Натуральный мех</button>
+        <button class="filter material" data-filter="natural" aria-pressed="false">Натуральный мех</button>
+        <button class="filter material" data-filter="faux" aria-pressed="false">Искусственный мех</button>
+        <button class="filter material" data-filter="cold" aria-pressed="false">Для морозов</button>
       </div>
     </div>
     <div class="status"><span id="count"></span><button class="reset" id="reset" hidden>Сбросить фильтры</button></div>
@@ -56,21 +61,22 @@
   <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Увеличенная фотография">
     <div class="stage" id="stage"><img id="zoomImage" alt=""></div><div class="viewer-label" id="viewerLabel"></div><button class="close" id="closeViewer" aria-label="Закрыть">×</button><div class="hint" id="hint">Разведите два пальца для увеличения</div>
   </div>
-  <script src="catalog.js?v=20260928-4"></script>
+  <script src="catalog.js?v=20260928-5"></script>
   <script>
   (()=>{
     const data=window.VASKEVICH_CATALOG.products;
     const grid=document.getElementById('grid'),count=document.getElementById('count'),empty=document.getElementById('empty'),reset=document.getElementById('reset');
-    let type='all',natural=false;
-    const assetVersion='20260928-4';
+    let activeFilter='all';
+    const assetVersion='20260928-5';
     const thumb=id=>`t${id}.webp?v=${assetVersion}`;
     const full=(id,view)=>`f${id}_${view}.webp?v=${assetVersion}`;
     grid.innerHTML=data.map(p=>`<button class="card" data-id="${p.id}" data-tags="${p.tags.join(' ')}" aria-label="Открыть модель ${p.id}"><span class="photo"><img src="${thumb(p.id)}" loading="lazy" decoding="async" alt="Свадебная шубка ${p.id}, вид спереди"></span><span class="number"><span>МОДЕЛЬ ${p.id}</span><span class="arrow">↗</span></span></button>`).join('');
     document.querySelectorAll('.card img').forEach(img=>img.addEventListener('error',()=>{const id=img.closest('.card').dataset.id;const fallbacks=[full(id,'front'),full(id,'three-quarter')];const next=Number(img.dataset.fallback||0);if(next<fallbacks.length){img.dataset.fallback=String(next+1);img.src=fallbacks[next]}else{img.closest('.photo').textContent='Фото временно недоступно'}}));
-    function apply(){let shown=0;document.querySelectorAll('.card').forEach(card=>{const tags=card.dataset.tags.split(' ');const okType=type==='all'||tags.includes(type);const okNatural=!natural||tags.includes('natural');const show=okType&&okNatural;card.hidden=!show;if(show)shown++});count.textContent=`Показано: ${shown} из ${data.length}`;empty.style.display=shown?'none':'block';reset.hidden=type==='all'&&!natural}
-    document.getElementById('typeFilters').addEventListener('click',e=>{const b=e.target.closest('[data-type]');if(!b)return;type=b.dataset.type;document.querySelectorAll('[data-type]').forEach(x=>x.classList.toggle('active',x===b));apply()});
-    const naturalBtn=document.getElementById('naturalFilter');naturalBtn.onclick=()=>{natural=!natural;naturalBtn.classList.toggle('active',natural);naturalBtn.setAttribute('aria-pressed',String(natural));apply()};
-    reset.onclick=()=>{type='all';natural=false;document.querySelectorAll('[data-type]').forEach(x=>x.classList.toggle('active',x.dataset.type==='all'));naturalBtn.classList.remove('active');naturalBtn.setAttribute('aria-pressed','false');apply()};
+    const filterBtns=document.querySelectorAll('[data-filter]'),allBtn=document.getElementById('allFilter');
+    function apply(){let shown=0;document.querySelectorAll('.card').forEach(card=>{const tags=card.dataset.tags.split(' ').filter(Boolean);const show=activeFilter==='all'||tags.includes(activeFilter);card.hidden=!show;if(show)shown++});count.textContent=`Показано: ${shown} из ${data.length}`;empty.style.display=shown?'none':'block';reset.hidden=activeFilter==='all';allBtn.classList.toggle('active',activeFilter==='all')}
+    filterBtns.forEach(btn=>btn.onclick=()=>{activeFilter=btn.dataset.filter;filterBtns.forEach(x=>{const active=x===btn;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active))});apply()});
+    function clearFilters(){activeFilter='all';filterBtns.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});apply()}
+    allBtn.onclick=clearFilters;reset.onclick=clearFilters;
     const modal=document.getElementById('productModal'),title=document.getElementById('productTitle'),views=document.getElementById('views');
     function openProduct(id){title.textContent=`МОДЕЛЬ ${id}`;views.innerHTML=[["front","Фас"],["three-quarter","Ракурс ¾"]].map(([v,l])=>`<button class="view" data-src="${full(id,v)}" data-label="Модель ${id} · ${l}"><img src="${full(id,v)}" loading="eager" alt="Модель ${id}, ${l}"><span>${l}</span></button>`).join('');views.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>img.closest('.view').remove()));modal.classList.add('open');document.body.style.overflow='hidden'}
     function closeProduct(){modal.classList.remove('open');document.body.style.overflow=''}
