@@ -1,6 +1,6 @@
 window.VASKEVICH_CATALOG = {
-  version: 5,
-  updated: "2026-09-28",
+  version: 6,
+  updated: "2026-09-29",
   products: [
     {id:"001",tags:["faux","bolero"]},{id:"002",tags:["faux","bolero"]},{id:"003",tags:["jackets","blazers"]},
     {id:"004",tags:["jackets","sleeveless","scarves"]},{id:"005",tags:["coats","blazers"]},{id:"006",tags:["natural","cold"]},
@@ -15,6 +15,10 @@ window.VASKEVICH_CATALOG = {
     {id:"029",tags:["jackets","sleeveless","scarves"]},{id:"030",tags:["puffers","scarves","natural"]},{id:"031",tags:["puffers","blazers"]},
     {id:"032",tags:["sleeveless","natural"]},{id:"033",tags:["puffers","natural","bolero"]},
     {id:"034",tags:["sleeveless","natural","bolero"]},{id:"035",tags:["sleeveless","natural","bolero"]},
-    {id:"036",tags:["puffers","natural","cold","blazers"]}
+    {id:"036",tags:["puffers","natural","cold","blazers"]},
+    {id:"037",tags:[]},{id:"038",tags:[]},{id:"039",tags:[]},{id:"040",tags:[]},
+    {id:"041",tags:[]},{id:"042",tags:[]},{id:"043",tags:[]},{id:"044",tags:[]},
+    {id:"045",tags:[]},{id:"046",tags:[]},{id:"047",tags:[]},{id:"048",tags:[]},
+    {id:"049",tags:[]},{id:"050",tags:[]}
   ]
 };
