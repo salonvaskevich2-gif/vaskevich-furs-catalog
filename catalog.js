@@ -1,24 +1,4 @@
-window.VASKEVICH_CATALOG = {
-  version: 6,
-  updated: "2026-09-29",
-  products: [
-    {id:"001",tags:["faux","bolero"]},{id:"002",tags:["faux","bolero"]},{id:"003",tags:["jackets","blazers"]},
-    {id:"004",tags:["jackets","sleeveless","scarves"]},{id:"005",tags:["coats","blazers"]},{id:"006",tags:["natural","cold"]},
-    {id:"007",tags:["natural","bolero"]},{id:"008",tags:["faux","blazers"]},{id:"009",tags:["faux","bolero"]},
-    {id:"010",tags:["natural","cold"]},{id:"011",tags:["scarves","natural","cold"]},{id:"012",tags:["faux","bolero"]},
-    {id:"013",tags:["blazers"]},{id:"014",tags:["blazers"]},{id:"015",tags:["jackets","blazers"]},
-    {id:"016",tags:["natural","cold","blazers"]},{id:"017",tags:["coats"]},{id:"018",tags:["puffers","blazers"]},
-    {id:"019",tags:["faux","bolero"]},{id:"020",tags:["sleeveless","scarves","natural","bolero"]},{id:"021",tags:["faux"]},
-    {id:"022",tags:["natural","cold"]},{id:"023",tags:["natural","coats","blazers"]},{id:"024",tags:["sleeveless","scarves","natural","bolero"]},
-    {id:"025",tags:["faux","bolero"]},{id:"026",tags:["sleeveless","scarves","natural"]},
-    {id:"027",tags:["sleeveless","scarves","natural","bolero"]},{id:"028",tags:["natural"]},
-    {id:"029",tags:["jackets","sleeveless","scarves"]},{id:"030",tags:["puffers","scarves","natural"]},{id:"031",tags:["puffers","blazers"]},
-    {id:"032",tags:["sleeveless","natural"]},{id:"033",tags:["puffers","natural","bolero"]},
-    {id:"034",tags:["sleeveless","natural","bolero"]},{id:"035",tags:["sleeveless","natural","bolero"]},
-    {id:"036",tags:["puffers","natural","cold","blazers"]},
-    {id:"037",tags:[]},{id:"038",tags:[]},{id:"039",tags:[]},{id:"040",tags:[]},
-    {id:"041",tags:[]},{id:"042",tags:[]},{id:"043",tags:[]},{id:"044",tags:[]},
-    {id:"045",tags:[]},{id:"046",tags:[]},{id:"047",tags:[]},{id:"048",tags:[]},
-    {id:"049",tags:[]},{id:"050",tags:[]}
-  ]
-};
+window.VASKEVICH_CATALOG = {  version: 7,  updated: "2026-09-29",  products: [    {id:"001",tags:["faux","bolero"]},{id:"002",tags:["faux","bolero"]},{id:"003",tags:["jackets","blazers"]},    {id:"004",tags:["jackets","sleeveless","scarves"]},{id:"005",tags:["coats","blazers"]},{id:"006",tags:["natural","cold"]},    {id:"007",tags:["natural","bolero"]},{id:"008",tags:["faux","blazers"]},{id:"009",tags:["faux","bolero"]},    {id:"010",tags:["natural","cold"]},{id:"011",tags:["scarves","natural","cold"]},{id:"012",tags:["faux","bolero"]},    {id:"013",tags:["blazers"]},{id:"014",tags:["blazers"]},{id:"015",tags:["jackets","blazers"]},    {id:"016",tags:["natural","cold","blazers"]},{id:"017",tags:["coats"]},{id:"018",tags:["puffers","blazers"]},    {id:"019",tags:["faux","bolero"]},{id:"020",tags:["sleeveless","scarves","natural","bolero"]},{id:"021",tags:["faux"]},    {id:"022",tags:["natural","cold"]},{id:"023",tags:["natural","coats","blazers"]},{id:"024",tags:["sleeveless","scarves","natural","bolero"]},    {id:"025",tags:["faux","bolero"]},{id:"026",tags:["sleeveless","scarves","natural"]},    {id:"027",tags:["sleeveless","scarves","natural","bolero"]},{id:"028",tags:["natural"]},    {id:"029",tags:["jackets","sleeveless","scarves"]},{id:"030",tags:["puffers","scarves","natural"]},{id:"031",tags:["puffers","blazers"]},    {id:"032",tags:["sleeveless","natural"]},{id:"033",tags:["puffers","natural","bolero"]},    {id:"034",tags:["sleeveless","natural","bolero"]},{id:"035",tags:["sleeveless","natural","bolero"]},    {id:"036",tags:["puffers","natural","cold","blazers"]},    {id:"037",tags:["natural","cold","blazers"]},{id:"038",tags:["faux","blazers"]},
+    {id:"039",tags:["jackets","sleeveless","scarves"]},{id:"040",tags:["blazers","bolero","natural","cold"]},    {id:"041",tags:["puffers","natural","cold"]},{id:"042",tags:["puffers","natural","cold"]},
+    {id:"043",tags:["sleeveless","scarves","natural"]},{id:"044",tags:["puffers","coats","blazers"]},    {id:"045",tags:["puffers","blazers"]},{id:"046",tags:["puffers","blazers"]},
+    {id:"047",tags:["puffers","blazers"]},{id:"048",tags:["puffers","natural","cold"]},    {id:"049",tags:["sleeveless","natural"]},{id:"050",tags:["jackets","blazers"]}  ]};
