@@ -1,5 +1,5 @@
 window.VASKEVICH_CATALOG = {
-  version: 8,
+  version: 9,
   updated: "2026-10-04",
   products: [
     {id:"001",tags:["faux","bolero"]},{id:"002",tags:["faux","bolero"]},{id:"003",tags:["jackets","blazers"]},
@@ -23,9 +23,9 @@ window.VASKEVICH_CATALOG = {
     {id:"045",tags:["puffers","blazers"]},{id:"046",tags:["puffers","blazers"]},
     {id:"047",tags:["puffers","blazers"]},{id:"048",tags:["puffers","natural","cold"]},
     {id:"049",tags:["sleeveless","natural"]},{id:"050",tags:["jackets","blazers"]},
-    {id:"051",tags:[]},{id:"052",tags:[]},{id:"053",tags:[]},{id:"054",tags:[]},
-    {id:"055",tags:[]},{id:"056",tags:[]},{id:"057",tags:[]},{id:"058",tags:[]},
-    {id:"059",tags:[]},{id:"060",tags:[]},{id:"061",tags:[]},{id:"062",tags:[]},
-    {id:"063",tags:[]},{id:"064",tags:[]},{id:"065",tags:[]},{id:"066",tags:[]}
+    {id:"051",tags:[]},{id:"052",tags:["men"]},{id:"053",tags:["natural","jackets","men"]},{id:"054",tags:["natural","sleeveless","cold","men"]},
+    {id:"055",tags:["natural","jackets","sleeveless"]},{id:"056",tags:["natural","jackets"]},{id:"057",tags:["natural","sleeveless"]},{id:"058",tags:["jackets"]},
+    {id:"059",tags:["natural","sleeveless"]},{id:"060",tags:["faux","cold"]},{id:"061",tags:["jackets"]},{id:"062",tags:["natural","cold"]},
+    {id:"063",tags:["natural","cold"]},{id:"064",tags:["faux"]},{id:"065",tags:["faux","cold"]},{id:"066",tags:["jackets","faux"]}
   ]
 };
