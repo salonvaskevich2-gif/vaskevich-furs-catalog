@@ -61,13 +61,13 @@
   <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Увеличенная фотография">
     <div class="stage" id="stage"><img id="zoomImage" alt=""></div><div class="viewer-label" id="viewerLabel"></div><button class="close" id="closeViewer" aria-label="Закрыть">×</button><div class="hint" id="hint">Разведите два пальца для увеличения</div>
   </div>
-  <script src="catalog.js?v=20260929-7"></script>
+  <script src="catalog.js?v=20261004-8"></script>
   <script>
   (()=>{
     const data=window.VASKEVICH_CATALOG.products;
     const grid=document.getElementById('grid'),count=document.getElementById('count'),empty=document.getElementById('empty'),reset=document.getElementById('reset');
     let activeFilter='all';
-    const assetVersion='20260929-7';
+    const assetVersion='20261004-8';
     const thumb=id=>`t${id}.webp?v=${assetVersion}`;
     const full=(id,view)=>`f${id}_${view}.webp?v=${assetVersion}`;
     grid.innerHTML=data.map(p=>`<button class="card" data-id="${p.id}" data-tags="${p.tags.join(' ')}" aria-label="Открыть модель ${p.id}"><span class="photo"><img src="${thumb(p.id)}" loading="lazy" decoding="async" alt="Свадебная шубка ${p.id}, вид спереди"></span><span class="number"><span>МОДЕЛЬ ${p.id}</span><span class="arrow">↗</span></span></button>`).join('');
