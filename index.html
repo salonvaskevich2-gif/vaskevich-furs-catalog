@@ -6,6 +6,17 @@
   <meta name="theme-color" content="#f7f5f2">
   <meta name="description" content="Каталог свадебных шубок, накидок и пончо VASKEVICH">
   <title>Свадебные шубки — VASKEVICH</title>
+  <!-- Yandex.Metrika counter -->
+  <script>
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=113507989','ym');
+    ym(113507989,'init',{ssr:true,webvisor:false,clickmap:true,referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+  </script>
+  <!-- /Yandex.Metrika counter -->
   <style>
     :root{--ink:#171512;--muted:#77716b;--line:#e7e1db;--paper:#fff;--soft:#f7f5f2;--accent:#9d7a52}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
@@ -27,6 +38,7 @@
   </style>
 </head>
 <body>
+  <noscript><div><img src="https://mc.yandex.ru/watch/113507989" style="position:absolute;left:-9999px" alt=""></div></noscript>
   <header class="hero"><div class="hero-inner">
     <img class="logo" src="logo.webp" alt="VASKEVICH Bridal Salon">
     <div class="eyebrow">Свадебный салон</div>
@@ -69,6 +81,7 @@
   (()=>{
     const data=window.VASKEVICH_CATALOG.products;
     const grid=document.getElementById('grid'),count=document.getElementById('count'),empty=document.getElementById('empty'),reset=document.getElementById('reset');
+    const trackGoal=(goal,params={})=>{if(typeof window.ym==='function')window.ym(113507989,'reachGoal',goal,params)};
     let activeFilter='all';
     const assetVersion='20261004-8';
     const thumb=id=>`t${id}.webp?v=${assetVersion}`;
@@ -77,17 +90,17 @@
     document.querySelectorAll('.card img').forEach(img=>img.addEventListener('error',()=>{const id=img.closest('.card').dataset.id;const fallbacks=[full(id,'front'),full(id,'three-quarter')];const next=Number(img.dataset.fallback||0);if(next<fallbacks.length){img.dataset.fallback=String(next+1);img.src=fallbacks[next]}else{img.closest('.photo').textContent='Фото временно недоступно'}}));
     const filterBtns=document.querySelectorAll('[data-filter]'),allBtn=document.getElementById('allFilter');
     function apply(){let shown=0;document.querySelectorAll('.card').forEach(card=>{const tags=card.dataset.tags.split(' ').filter(Boolean);const show=activeFilter==='all'||tags.includes(activeFilter);card.hidden=!show;if(show)shown++});count.textContent=`Показано: ${shown} из ${data.length}`;empty.style.display=shown?'none':'block';reset.hidden=activeFilter==='all';allBtn.classList.toggle('active',activeFilter==='all')}
-    filterBtns.forEach(btn=>btn.onclick=()=>{activeFilter=btn.dataset.filter;filterBtns.forEach(x=>{const active=x===btn;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active))});apply()});
-    function clearFilters(){activeFilter='all';filterBtns.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});apply()}
+    filterBtns.forEach(btn=>btn.onclick=()=>{activeFilter=btn.dataset.filter;filterBtns.forEach(x=>{const active=x===btn;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active))});apply();trackGoal('filter_use',{filter:activeFilter,filter_name:btn.textContent.trim()})});
+    function clearFilters(){activeFilter='all';filterBtns.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});apply();trackGoal('filter_reset')}
     allBtn.onclick=clearFilters;reset.onclick=clearFilters;
     const modal=document.getElementById('productModal'),title=document.getElementById('productTitle'),views=document.getElementById('views');
-    function openProduct(id){title.textContent=`МОДЕЛЬ ${id}`;views.innerHTML=[["front","Фас"],["three-quarter","Ракурс ¾"]].map(([v,l])=>`<button class="view" data-src="${full(id,v)}" data-label="Модель ${id} · ${l}"><img src="${full(id,v)}" loading="eager" alt="Модель ${id}, ${l}"><span>${l}</span></button>`).join('');views.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>img.closest('.view').remove()));modal.classList.add('open');document.body.style.overflow='hidden'}
+    function openProduct(id){title.textContent=`МОДЕЛЬ ${id}`;views.innerHTML=[["front","Фас"],["three-quarter","Ракурс ¾"]].map(([v,l])=>`<button class="view" data-src="${full(id,v)}" data-label="Модель ${id} · ${l}"><img src="${full(id,v)}" loading="eager" alt="Модель ${id}, ${l}"><span>${l}</span></button>`).join('');views.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>img.closest('.view').remove()));modal.classList.add('open');document.body.style.overflow='hidden';trackGoal('model_open',{model_id:id})}
     function closeProduct(){modal.classList.remove('open');document.body.style.overflow=''}
     grid.addEventListener('click',e=>{const c=e.target.closest('.card');if(c)openProduct(c.dataset.id)});document.getElementById('closeProduct').onclick=closeProduct;modal.addEventListener('click',e=>{if(e.target===modal)closeProduct()});
     const viewer=document.getElementById('viewer'),stage=document.getElementById('stage'),zoom=document.getElementById('zoomImage'),label=document.getElementById('viewerLabel'),hint=document.getElementById('hint');let scale=1,x=0,y=0,startX=0,startY=0,baseX=0,baseY=0,startDistance=0,startScale=1,lastTap=0;
     const render=()=>zoom.style.transform=`translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) scale(${scale})`;
     function fit(){const f=Math.min(stage.clientWidth/zoom.naturalWidth,stage.clientHeight/zoom.naturalHeight);zoom.style.width=`${zoom.naturalWidth*f}px`;zoom.style.height=`${zoom.naturalHeight*f}px`;scale=1;x=0;y=0;render()}
-    function openViewer(src,text){zoom.onload=fit;zoom.src=src;label.textContent=text;hint.style.opacity='1';viewer.classList.add('open')}
+    function openViewer(src,text){zoom.onload=fit;zoom.src=src;label.textContent=text;hint.style.opacity='1';viewer.classList.add('open');trackGoal('photo_zoom',{photo:text})}
     function closeViewer(){viewer.classList.remove('open');zoom.src='';if(!modal.classList.contains('open'))document.body.style.overflow=''}
     views.addEventListener('click',e=>{const b=e.target.closest('.view');if(b)openViewer(b.dataset.src,b.dataset.label)});document.getElementById('closeViewer').onclick=closeViewer;
     const distance=(a,b)=>Math.hypot(b.clientX-a.clientX,b.clientY-a.clientY);
