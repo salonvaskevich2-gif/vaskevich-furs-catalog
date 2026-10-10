@@ -1,5 +1,5 @@
 window.VASKEVICH_CATALOG = {
-  version: 11,
+  version: 12,
   updated: "2026-10-10",
   products: [
     {id:"001",tags:["faux","bolero"],sale:5800},{id:"002",tags:["faux","bolero"],sale:4500},{id:"003",tags:["jackets","blazers"],sale:9500,rental:3500},
@@ -26,6 +26,11 @@ window.VASKEVICH_CATALOG = {
     {id:"051",tags:["coats"],sale:18500,rental:8000},{id:"052",tags:["men","coats"],sale:7500,rental:3500},{id:"053",tags:["natural","jackets","men","coats"],sale:7500,rental:3500},{id:"054",tags:["natural","sleeveless","cold","men","scarves","coats","bolero"],sale:7500,rental:3500},
     {id:"055",tags:["natural","jackets","sleeveless","coats"],sale:7500,rental:3500},{id:"056",tags:["natural","jackets","bolero"],sale:18500,rental:5000},{id:"057",tags:["natural","sleeveless","scarves","bolero"],sale:8500,rental:4500},{id:"058",tags:["jackets","bolero"],sale:9500,rental:3500},
     {id:"059",tags:["natural","sleeveless","scarves","bolero"],sale:9500,rental:3000},{id:"060",tags:["faux","cold"],sale:18500,rental:4000},{id:"061",tags:["jackets","bolero"],sale:4900,rental:2000},{id:"062",tags:["natural","cold","coats"],sale:12500,rental:5000},
-    {id:"063",tags:["natural","cold","coats"],sale:7500,rental:3500},{id:"064",tags:["faux","bolero","cold"],sale:10500,rental:3500},{id:"065",tags:["faux","cold","coats"],sale:18500,rental:5500},{id:"066",tags:["jackets","faux","scarves","bolero"],sale:4100}
+    {id:"063",tags:["natural","cold","coats"],sale:7500,rental:3500},{id:"064",tags:["faux","bolero","cold"],sale:10500,rental:3500},{id:"065",tags:["faux","cold","coats"],sale:18500,rental:5500},{id:"066",tags:["jackets","faux","scarves","bolero"],sale:4100},
+    {id:"067",tags:["puffers","coats","blazers","cold"],sale:9500,rental:3500},
+    {id:"068",tags:["jackets","coats","blazers"],sale:10500,rental:4500},
+    {id:"069",tags:["jackets","sleeveless","scarves","bolero"],sale:6500,rental:2000},
+    {id:"070",tags:["jackets","coats","blazers","bolero"],sale:28500,rental:6500},
+    {id:"071",tags:["jackets","coats","blazers"],sale:9500,rental:3500}
   ]
 };
