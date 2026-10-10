@@ -76,10 +76,13 @@
   <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Увеличенная фотография">
     <div class="stage" id="stage"><img id="zoomImage" alt=""></div><div class="viewer-label" id="viewerLabel"></div><button class="close" id="closeViewer" aria-label="Закрыть">×</button><div class="hint" id="hint">Разведите два пальца для увеличения</div>
   </div>
-  <script src="catalog.js?v=20261010-11"></script>
+  <script src="catalog.js?v=20261010-12"></script>
   <script>
   (()=>{
-    const data=window.VASKEVICH_CATALOG.products;
+    const products=window.VASKEVICH_CATALOG.products;
+    const data=products.filter(p=>Number(p.id)<=66);
+    // Models 067–071 become visible only after their image files are uploaded.
+    const newModels=products.filter(p=>Number(p.id)>66);
     const grid=document.getElementById('grid'),count=document.getElementById('count'),empty=document.getElementById('empty'),reset=document.getElementById('reset');
     const trackGoal=(goal,params={})=>{if(typeof window.ym==='function')window.ym(113507989,'reachGoal',goal,params)};
     let activeFilter='all';
@@ -90,6 +93,16 @@
     const priceLine=p=>'<span>Продажа: '+rub(p.sale)+'</span>'+(p.rental!=null?'<span>Прокат: '+rub(p.rental)+'</span>':'');
     grid.innerHTML=data.map(p=>`<button class="card" data-id="${p.id}" data-tags="${p.tags.join(' ')}" aria-label="Открыть модель ${p.id}"><span class="photo"><img src="${thumb(p.id)}" loading="lazy" decoding="async" alt="Свадебная шубка ${p.id}, вид спереди"></span><span class="number"><span>МОДЕЛЬ ${p.id}</span><span class="arrow">↗</span></span><span class="prices">${priceLine(p)}</span></button>`).join('');
     document.querySelectorAll('.card img').forEach(img=>img.addEventListener('error',()=>{const id=img.closest('.card').dataset.id;const fallbacks=[full(id,'front'),full(id,'three-quarter')];const next=Number(img.dataset.fallback||0);if(next<fallbacks.length){img.dataset.fallback=String(next+1);img.src=fallbacks[next]}else{img.closest('.photo').textContent='Фото временно недоступно'}}));
+    // Verify media availability before displaying new listings, to avoid broken product cards.
+    Promise.all(newModels.map(p=>new Promise(resolve=>{
+      const probe=new Image();probe.onload=()=>resolve(p);probe.onerror=()=>resolve(null);
+      probe.src=thumb(p.id);
+    }))).then(available=>{
+      const ready=available.filter(Boolean);
+      if(!ready.length)return;
+      ready.forEach(p=>{data.push(p);grid.insertAdjacentHTML('beforeend',`<button class="card" data-id="${p.id}" data-tags="${p.tags.join(' ')}" aria-label="Открыть модель ${p.id}"><span class="photo"><img src="${thumb(p.id)}" loading="lazy" decoding="async" alt="Свадебная шубка ${p.id}, вид спереди"></span><span class="number"><span>МОДЕЛЬ ${p.id}</span><span class="arrow">↗</span></span><span class="prices">${priceLine(p)}</span></button>`)});
+      apply();
+    });
     const filterBtns=document.querySelectorAll('[data-filter]'),allBtn=document.getElementById('allFilter');
     function apply(){let shown=0;document.querySelectorAll('.card').forEach(card=>{const tags=card.dataset.tags.split(' ').filter(Boolean);const show=activeFilter==='all'||tags.includes(activeFilter);card.hidden=!show;if(show)shown++});count.textContent=`Показано: ${shown} из ${data.length}`;empty.style.display=shown?'none':'block';reset.hidden=activeFilter==='all';allBtn.classList.toggle('active',activeFilter==='all')}
     filterBtns.forEach(btn=>btn.onclick=()=>{activeFilter=btn.dataset.filter;filterBtns.forEach(x=>{const active=x===btn;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active))});apply();trackGoal('filter_use',{filter:activeFilter,filter_name:btn.textContent.trim()})});
