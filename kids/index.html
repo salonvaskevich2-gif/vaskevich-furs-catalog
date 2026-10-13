@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ef">
+<meta name="description" content="Каталог детских праздничных платьев VASKEVICH в Хабаровске">
+<title>Детские праздничные платья — VASKEVICH</title>
+<style>
+:root{--ink:#171512;--muted:#756f68;--line:#e7e0d8;--paper:#fff;--soft:#f7f4ef;--accent:#9d7a52}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}button{font:inherit}
+.hero{display:grid;place-items:center;min-height:32vh;padding:42px 20px 34px;text-align:center;background:linear-gradient(180deg,#faf8f5 0,#fff 100%)}
+.logo{font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,6vw,48px);letter-spacing:.18em;margin-left:.18em}.eyebrow{margin-top:10px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(31px,6vw,54px);font-weight:400;letter-spacing:.04em;margin:18px 0 8px}.lead{max-width:650px;margin:0 auto;color:var(--muted);font-size:15px;line-height:1.6}
+.catalog{max-width:1180px;margin:0 auto;padding:0 14px 80px}.toolbar{position:sticky;top:0;z-index:20;margin:0 -14px;padding:12px 14px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(231,224,216,.9)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:9px 14px;font-size:13px;cursor:pointer}.filter.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.status{display:flex;justify-content:space-between;align-items:center;padding:22px 2px 12px;color:var(--muted);font-size:13px}.reset{border:0;background:none;color:var(--ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 14px}.card{border:0;background:none;padding:0;text-align:left;color:inherit;cursor:pointer}.photo{display:block;overflow:hidden;background:var(--soft);aspect-ratio:2/3}.photo img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .4s ease}.card:hover .photo img{transform:scale(1.015)}
+.number{display:flex;justify-content:space-between;align-items:center;padding:11px 2px 5px;font-size:13px;letter-spacing:.11em}.meta{display:block;padding:0 2px;color:var(--muted);font-size:12px}.arrow{color:var(--muted);font-size:16px}.empty{display:none;padding:60px 16px;text-align:center;color:var(--muted)}
+.viewer{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.95);display:none;touch-action:none}.viewer.open{display:block}.stage{position:absolute;inset:0;overflow:hidden;touch-action:none}.stage img{position:absolute;left:50%;top:50%;max-width:none;transform-origin:center;user-select:none;-webkit-user-drag:none}.close{position:absolute;right:14px;top:14px;z-index:3;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font-size:27px;line-height:1;cursor:pointer}.viewer-label{position:absolute;left:14px;top:18px;z-index:3;color:#fff;background:rgba(0,0,0,.35);padding:8px 12px;border-radius:999px;font-size:12px}.hint{position:absolute;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:3;color:#fff;background:rgba(0,0,0,.45);padding:8px 12px;border-radius:999px;font-size:12px;white-space:nowrap;transition:opacity .3s}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:27vh;padding:30px 18px 26px}.filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.filter{padding:8px 5px;font-size:11px;white-space:normal}.catalog{padding-left:10px;padding-right:10px}.toolbar{margin:0 -10px;padding-left:10px;padding-right:10px}}
+@media(max-width:410px){.grid{gap:20px 8px}.number{font-size:11px}.meta{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.photo img{transition:none}}
+</style>
+</head>
+<body>
+<header class="hero"><div><div class="logo">VASKEVICH</div><div class="eyebrow">Свадебный салон · Хабаровск</div><h1>Детские платья</h1><p class="lead">Праздничные платья для особенных событий. Нажмите на модель, чтобы рассмотреть детали.</p></div></header>
+<main class="catalog">
+<div class="toolbar"><div class="filters" aria-label="Фильтры каталога">
+<button class="filter active" data-filter="all">Все модели</button>
+<button class="filter" data-filter="gold">Золотые</button>
+<button class="filter" data-filter="white">Белые</button>
+<button class="filter" data-filter="blue">Голубые</button>
+<button class="filter" data-filter="train">Со шлейфом</button>
+</div></div>
+<div class="status"><span id="count"></span><button class="reset" id="reset" hidden>Сбросить фильтр</button></div>
+<div class="grid" id="grid"></div><div class="empty" id="empty">В этой категории моделей пока нет.</div>
+</main>
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Увеличенная фотография"><div class="stage" id="stage"><img id="zoomImage" alt=""></div><div class="viewer-label" id="viewerLabel"></div><button class="close" id="closeViewer" aria-label="Закрыть">×</button><div class="hint" id="hint">Разведите два пальца для увеличения</div></div>
+<script>
+(()=>{
+const products=[
+{id:'001',image:'001.webp',tags:['gold','train'],label:'Золотое платье'},
+{id:'002',image:'002.webp',tags:['white'],label:'Белое платье'},
+{id:'003',image:'003.webp',tags:['blue'],label:'Голубое платье'}
+];
+const grid=document.getElementById('grid'),count=document.getElementById('count'),empty=document.getElementById('empty'),reset=document.getElementById('reset');
+grid.innerHTML=products.map(p=>`<button class="card" data-id="${p.id}" data-tags="${p.tags.join(' ')}" aria-label="Открыть модель ${p.id}"><span class="photo"><img src="${p.image}" loading="lazy" decoding="async" alt="Детское праздничное платье VASKEVICH, модель ${p.id}"></span><span class="number"><span>МОДЕЛЬ ${p.id}</span><span class="arrow">↗</span></span><span class="meta">${p.label}</span></button>`).join('');
+let active='all';
+function apply(){let shown=0;document.querySelectorAll('.card').forEach(card=>{const ok=active==='all'||card.dataset.tags.split(' ').includes(active);card.hidden=!ok;if(ok)shown++});count.textContent=`Показано: ${shown} из ${products.length}`;empty.style.display=shown?'none':'block';reset.hidden=active==='all';document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter===active))}
+document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{active=b.dataset.filter;apply()});reset.onclick=()=>{active='all';apply()};
+const viewer=document.getElementById('viewer'),stage=document.getElementById('stage'),zoom=document.getElementById('zoomImage'),label=document.getElementById('viewerLabel'),hint=document.getElementById('hint');let scale=1,x=0,y=0,startX=0,startY=0,baseX=0,baseY=0,startDistance=0,startScale=1,lastTap=0;
+const render=()=>zoom.style.transform=`translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) scale(${scale})`;
+function fit(){const f=Math.min(stage.clientWidth/zoom.naturalWidth,stage.clientHeight/zoom.naturalHeight);zoom.style.width=`${zoom.naturalWidth*f}px`;zoom.style.height=`${zoom.naturalHeight*f}px`;scale=1;x=0;y=0;render()}
+function openViewer(p){zoom.onload=fit;zoom.src=p.image;label.textContent=`Модель ${p.id}`;hint.style.opacity='1';viewer.classList.add('open');document.body.style.overflow='hidden'}
+function closeViewer(){viewer.classList.remove('open');zoom.src='';document.body.style.overflow=''}
+grid.addEventListener('click',e=>{const card=e.target.closest('.card');if(card)openViewer(products.find(p=>p.id===card.dataset.id))});document.getElementById('closeViewer').onclick=closeViewer;
+const distance=(a,b)=>Math.hypot(b.clientX-a.clientX,b.clientY-a.clientY);
+stage.addEventListener('touchstart',e=>{e.preventDefault();if(e.touches.length===1){const now=Date.now();if(now-lastTap<280){scale=scale>1.05?1:2.5;if(scale===1)x=y=0;render()}lastTap=now;startX=e.touches[0].clientX;startY=e.touches[0].clientY;baseX=x;baseY=y}else if(e.touches.length===2){startDistance=distance(e.touches[0],e.touches[1]);startScale=scale}},{passive:false});
+stage.addEventListener('touchmove',e=>{e.preventDefault();hint.style.opacity='0';if(e.touches.length===1&&scale>1){x=baseX+e.touches[0].clientX-startX;y=baseY+e.touches[0].clientY-startY;render()}else if(e.touches.length===2){scale=Math.max(1,Math.min(6,startScale*distance(e.touches[0],e.touches[1])/startDistance));render()}},{passive:false});stage.addEventListener('wheel',e=>{e.preventDefault();hint.style.opacity='0';scale=Math.max(1,Math.min(6,scale*(e.deltaY<0?1.12:.9)));if(scale===1)x=y=0;render()},{passive:false});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeViewer()});apply();
+})();
+</script>
+</body></html>
