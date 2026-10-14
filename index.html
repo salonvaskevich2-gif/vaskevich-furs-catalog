@@ -76,17 +76,17 @@
   <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Увеличенная фотография">
     <div class="stage" id="stage"><img id="zoomImage" alt=""></div><div class="viewer-label" id="viewerLabel"></div><button class="close" id="closeViewer" aria-label="Закрыть">×</button><div class="hint" id="hint">Разведите два пальца для увеличения</div>
   </div>
-  <script src="catalog.js?v=20261010-12"></script>
+  <script src="catalog.js?v=20261014-13"></script>
   <script>
   (()=>{
     const products=window.VASKEVICH_CATALOG.products;
     const data=products.filter(p=>Number(p.id)<=66);
-    // Models 067–071 become visible only after their image files are uploaded.
+    // Models 067 and newer become visible only after their image files are uploaded.
     const newModels=products.filter(p=>Number(p.id)>66);
     const grid=document.getElementById('grid'),count=document.getElementById('count'),empty=document.getElementById('empty'),reset=document.getElementById('reset');
     const trackGoal=(goal,params={})=>{if(typeof window.ym==='function')window.ym(113507989,'reachGoal',goal,params)};
     let activeFilter='all';
-    const assetVersion='20261010-13';
+    const assetVersion='20261014-14';
     const thumb=id=>`t${id}.webp?v=${assetVersion}`;
     const full=(id,view)=>`f${id}_${view}.webp?v=${assetVersion}`;
     const rub=n=>n.toLocaleString('ru-RU')+' ₽';
