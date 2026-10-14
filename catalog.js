@@ -1,6 +1,6 @@
 window.VASKEVICH_CATALOG = {
-  version: 12,
-  updated: "2026-10-10",
+  version: 13,
+  updated: "2026-10-14",
   products: [
     {id:"001",tags:["faux","bolero"],sale:5800},{id:"002",tags:["faux","bolero"],sale:4500},{id:"003",tags:["jackets","blazers"],sale:9500,rental:3500},
     {id:"004",tags:["jackets","sleeveless","scarves"],sale:12500,rental:3000},{id:"005",tags:["coats","blazers"],sale:18500,rental:7000},{id:"006",tags:["natural","cold"],sale:12500,rental:5000},
@@ -31,6 +31,9 @@ window.VASKEVICH_CATALOG = {
     {id:"068",tags:["jackets","coats","blazers"],sale:10500,rental:4500},
     {id:"069",tags:["jackets","sleeveless","scarves","bolero"],sale:6500,rental:2000},
     {id:"070",tags:["jackets","coats","blazers","bolero"],sale:28500,rental:6500},
-    {id:"071",tags:["jackets","coats","blazers"],sale:9500,rental:3500}
+    {id:"071",tags:["jackets","coats","blazers"],sale:9500,rental:3500},
+    {id:"072",tags:["faux","scarves","sleeveless"],sale:5500,rental:2500},
+    {id:"073",tags:["faux","scarves","bolero","sleeveless"],sale:6500,rental:3500},
+    {id:"074",tags:["faux","jackets","sleeveless","scarves","bolero"],sale:5500,rental:3500}
   ]
 };
